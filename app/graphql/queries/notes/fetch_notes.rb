@@ -1,4 +1,4 @@
-module Queries
+module Queries::Notes
   class FetchNotes < Queries::BaseQuery
     
     type [Types::NoteType], null: false

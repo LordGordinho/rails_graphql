@@ -1,4 +1,4 @@
-module Queries
+module Queries::Notes
   class FetchNote < Queries::BaseQuery
     type Types::NoteType, null: false
     argument :id, ID, required: true

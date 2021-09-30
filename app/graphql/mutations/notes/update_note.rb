@@ -1,14 +1,15 @@
-module Mutations
-  class AddNote < Mutations::BaseMutation
+module Mutations::Notes
+  class UpdateNote < Mutations::BaseMutation
     argument :params, Types::Input::NoteInputType, required: true
+    argument :id, ID, required: true
 
     field :note, Types::NoteType, null: false
 
-    def resolve(params:)
-      note_params = Hash params
+    def resolve(params:, id:)
+      note = Note.find_by(id: id)
 
       begin
-        note = Note.create!(note_params)
+        note.update!(params.to_h)
 
         { note: note }
       rescue ActiveRecord::RecordInvalid => e
